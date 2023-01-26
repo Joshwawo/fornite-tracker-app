@@ -10,6 +10,7 @@ const Bundlers = () => {
   if (fetchError) {
     return <p className="bg-red-100 text-red-500">Something went wrong</p>;
   }
+  //
 
   return (
     <section className="">
