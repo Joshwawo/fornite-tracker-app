@@ -1,8 +1,9 @@
-import {Router, Route, Routes} from 'react-router-dom'
+import {Route, Routes} from 'react-router-dom'
 import {ShopProvider} from '@/context/ShopProvider'
 import HomePage from '@/pages/HomePage'
 import Error404 from '@/pages/Errors/Error404'
 import Navbar from './components/Navbar'
+import Bundlers from './pages/Bundlers'
 
 
 function App() {
@@ -11,12 +12,13 @@ function App() {
     <div className="App">
       <ShopProvider>
         <Navbar/>
-        <div className='mt-20'>
+        <main  className='mt-20'>
           <Routes>
             <Route path="/" element={<HomePage/>} />
+            <Route path='/bundlers' element={<Bundlers/>}  />
             <Route path='*' element={<Error404/>}  />
           </Routes>
-        </div>
+        </main>
       </ShopProvider>
     </div>
   )

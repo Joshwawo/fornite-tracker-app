@@ -9,7 +9,7 @@ const Navbar = () => {
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
             <Link to={"/"}>
-              <h2 className="text-2xl font-bold">Fornite Offerts</h2>
+              <h2 className="text-2xl font-bold">Fornite Sales</h2>
             </Link>
             <div className="md:hidden">
               <button
@@ -63,11 +63,12 @@ const Navbar = () => {
                 <Link to={"/daily"}>Daily</Link>
               </li>
               <li className="text-gray-600 hover:text-blue-600">
-                <Link to={"/week"}>Week</Link>
-              </li>
-              <li className="text-gray-600 hover:text-blue-600">
                 <Link to={"/bundlers"}>Bundlers</Link>
               </li>
+              <li className="text-gray-600 hover:text-blue-600">
+                <Link to={"/allsales"}>All Sales</Link>
+              </li>
+              
             </ul>
           </div>
         </div>

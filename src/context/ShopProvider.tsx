@@ -7,23 +7,30 @@ interface ShopContextTypes{
   hola:string
   data:Shoptypes | undefined,
   isLoading:boolean,
-  fetchError:any
+  fetchError:any,
+  showModal:boolean,
+  setShowModal:React.Dispatch<React.SetStateAction<boolean>>
+  
 }
 
 const ShopContext = createContext<ShopContextTypes | null>(null);
 
 const ShopProvider = ({children}: {children: ReactNode}) => {
   const [hola, setHola] = useState<string>('hola desde context')
-  const url = "https://fortnite-api.com/v2/shop/br/combined?language=en"
+  const [showModal, setShowModal] = useState<boolean>(false)
+  const url = "https://fortnite-api.com/v2/shop/br/combined"
   const fetcher = (url:string) => axios.get<Shoptypes>(url).then((res) => res.data);
-
   const {data, isLoading,error} = useSwr(url, fetcher)
   
- 
-
-  
   return (
-    <ShopContext.Provider value={{hola,data,isLoading,fetchError:error}}>
+    <ShopContext.Provider value={{
+      hola,
+      data,
+      isLoading,
+      fetchError:error,
+      showModal,
+      setShowModal
+      }}>
     {children}
     </ShopContext.Provider>
   )

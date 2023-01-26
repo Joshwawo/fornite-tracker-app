@@ -10,7 +10,7 @@ const HomePage = () => {
   }
 
   return (
-    <div>
+    <section>
       <div className=" h-screen">
         <div className="grid grid-cols-2 md:grid-cols-5 container mx-auto 2xl:grid-cols-7  ">
           {isLoading
@@ -24,7 +24,7 @@ const HomePage = () => {
               })}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
