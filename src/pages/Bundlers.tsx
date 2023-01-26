@@ -4,8 +4,13 @@ import useShop from "@/context/ShopProvider";
 const Bundlers = () => {
   const { data, isLoading, fetchError } = useShop();
 
-  if (isLoading)
-    return Array.from({ length: 4 }, (_, i) => <SkeletonCard key={i} />);
+  if (isLoading) {
+    return (
+      <div className="">
+        {Array.from({ length: 5 }, (_, i) => <SkeletonCard key={i} />)}
+      </div>
+    )
+  }
 
   if (fetchError)
     return <p className="bg-red-100 text-red-500">Something went wrong</p>;

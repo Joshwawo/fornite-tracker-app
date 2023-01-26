@@ -5,11 +5,19 @@ import SkeletonCard from "@/components/ui/SkeletonCard";
 const HomePage = () => {
   const { data, isLoading, fetchError } = useShop();
 
-  if (isLoading)
-    return Array.from({ length: 5 }, (_, i) => <SkeletonCard key={i} />);
+  if (isLoading) {
+    return (
+      <div className="">
+        {Array.from({ length: 5 }, (_, i) => <SkeletonCard key={i} />)}
+      </div>
+    )
+  }
+    
 
-  if (fetchError)
+  if (fetchError) {
     return <p className="bg-red-200 text-red-500">Something went wrong</p>;
+  }
+    
   return (
     <section>
       <div className=" h-screen">

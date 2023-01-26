@@ -6,10 +6,16 @@ import useShop from "@/context/ShopProvider";
 const News = () => {
   const { newsLoading, newsError } = useShop();
 
-  if (newsLoading)
-    return Array.from({ length: 4 }, (_, i) => <SkeletonCard key={i}  />);
-  if (newsError)
-    return <p className="bg-red-200 text-red-500">Something went wrong</p>;
+  if (newsLoading) {
+    return (
+      <div className="">
+        {Array.from({ length: 5 }, (_, i) => <SkeletonCard key={i} />)}
+      </div>
+    )
+  }
+    
+  if (newsError) return <p className="bg-red-200 text-red-500">Something went wrong</p>;
+    
 
   return (
     <section>
