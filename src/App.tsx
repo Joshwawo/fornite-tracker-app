@@ -4,6 +4,7 @@ import HomePage from '@/pages/HomePage'
 import Error404 from '@/pages/Errors/Error404'
 import Navbar from './components/Navbar'
 import Bundlers from './pages/Bundlers'
+import News from './pages/News'
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage/>} />
             <Route path='/bundlers' element={<Bundlers/>}  />
+            <Route path="/news" element={<News/>} />
             <Route path='*' element={<Error404/>}  />
           </Routes>
         </main>

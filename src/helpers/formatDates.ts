@@ -7,6 +7,5 @@ export const formatDates = (date: string) => {
     minute: "numeric",
     second: "numeric",
   });
-  const fix = format.format(new Date(date));
-  return fix.split("at")[0];
+  return format.format(new Date(date)).split("at")[0];
 };

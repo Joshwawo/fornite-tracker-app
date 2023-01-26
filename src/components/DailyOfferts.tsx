@@ -1,33 +1,38 @@
 import { useState } from "react";
 import { DailyEntry } from "@/types/Shop";
 import pavoImg from "@/assets/img/vbuck.webp";
+import SvgLoading from "@/assets/img/svg-loading.svg";
 import { formatDates } from "@/helpers/formatDates";
-import Comparator from '@/components/helpers/Comparator'
+import Comparator from "@/components/helpers/Comparator";
 interface DailyOffertsProps {
   item: DailyEntry;
 }
 
-
-
 const DailyOfferts = ({ item }: DailyOffertsProps) => {
   const [showModal, setShowModal] = useState<boolean>(false);
-  console.log(item);
+  const [loading, setLoading] = useState<boolean>(true);
+  
+  // console.log(item);
   return (
     <article className="shadow bg-white mx-2 my-4">
-      <img
-        src={item.newDisplayAsset.materialInstances[0].images.Background}
-        alt={item.items[0].type.displayValue}
-      />
+      {loading ? (
+        <img
+          src={SvgLoading}
+          alt="loading.."
+          onLoad={() => setLoading(false)}
+        />
+      ) : (
+        <img
+          src={item.newDisplayAsset.materialInstances[0].images.Background}
+          alt="pavo"
+        />
+      )}
       <div className="text-sm font-semibold mx-2 my-2">
         <p className="">{item.items[0].name}</p>
         <p>{item.items[0].type.displayValue}</p>
         <Comparator>{item.items[0].rarity.value}</Comparator>
         <div className="mt-2 flex items-end ">
-          <img
-            src={pavoImg}
-            alt={item.items[0].type.displayValue}
-            className="w-6"
-          />
+          <img src={pavoImg} alt="" className="w-6" />
           <p>{item.regularPrice}</p>
         </div>
       </div>

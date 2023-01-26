@@ -1,25 +1,29 @@
 import { useState } from "react";
-import PavoIcon from "@/assets/img/vbuck.webp";
 import { FeaturedEntry } from "@/types/Shop";
 import { formatDates } from "@/helpers/formatDates";
 import Comparator from "@/components/helpers/Comparator";
-import useShop from '@/context/ShopProvider'
+import PavoIcon from "@/assets/img/vbuck.webp";
+import SvgLoading from "@/assets/img/svg-loading.svg";
 
 interface BundlersCardsProps {
   item: FeaturedEntry;
 }
 
-const BundlersCards = ({ item}: BundlersCardsProps) => {
+const BundlersCards = ({ item }: BundlersCardsProps) => {
   const [showModal, setShowModal] = useState(false);
-  const {isLoading} = useShop()
-  // console.log(item);
-  
+  const [loading, setLoading] = useState<boolean>(true);
+
   return (
     <article className="shadow bg-white mx-2 my-4 mb-5">
-      <img
-        src={item.newDisplayAsset.materialInstances[0].images.Background}
-        alt={item.items[0].type.displayValue}
-      />
+      {loading ? (
+        <img src={SvgLoading} loading="lazy" onLoad={() => setLoading(false)} />
+      ) : (
+        <img
+          src={item.newDisplayAsset.materialInstances[0].images.Background}
+          alt="image"
+          loading="lazy"
+        />
+      )}
       <div className="text-sm  mx-2 my-2">
         <p className="font-bold">{item.bundle?.name}</p>
         <p className="font-semibold">{item.bundle?.info}</p>
@@ -69,16 +73,23 @@ const BundlersCards = ({ item}: BundlersCardsProps) => {
                       <div className="grid grid-cols-3 sm:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  gap-1">
                         {item.items.map((item) => (
                           <div className="" key={item.id}>
-                            {/* <p>{item.type.displayValue}</p> */}
-                            <img
-                              src={item.images.smallIcon}
-                              alt={item.name}
-                              className="rounded w-40 h-30 object-scale-down"
-                              title={item.name}
-                              style={{
-                                background: `linear-gradient(10deg, ${`#${item.series?.colors[0]}, #${item.series?.colors[1]}, #${item.series?.colors[2]}, #${item.series?.colors[3]}, #${item.series?.colors[4]}`})`,
-                              }}
-                            />
+                            {loading ? (
+                              <img
+                                src={SvgLoading}
+                                loading="lazy"
+                                onLoad={() => setLoading(false)}
+                              />
+                            ) : (
+                              <img
+                                src={item.images.smallIcon}
+                                alt={item.name}
+                                className="rounded w-40 h-30 object-scale-down"
+                                title={item.name}
+                                style={{
+                                  background: `linear-gradient(10deg, ${`#${item.series?.colors[0]}, #${item.series?.colors[1]}, #${item.series?.colors[2]}, #${item.series?.colors[3]}, #${item.series?.colors[4]}`})`,
+                                }}
+                              />
+                            )}
                             <p className="text-sm leading-relaxed text-black font-semibold block">
                               {item.name}
                             </p>

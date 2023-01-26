@@ -4,26 +4,22 @@ import useShop from "@/context/ShopProvider";
 const Bundlers = () => {
   const { data, isLoading, fetchError } = useShop();
 
-  if (isLoading) {
-    return <SkeletonCard />;
-  }
-  if (fetchError) {
+  if (isLoading)
+    return Array.from({ length: 4 }, (_, i) => <SkeletonCard key={i} />);
+
+  if (fetchError)
     return <p className="bg-red-100 text-red-500">Something went wrong</p>;
-  }
-  //
 
   return (
     <section className="">
       <div className="grid grid-cols-2 md:grid-cols-5 container mx-auto 2xl:grid-cols-7">
         {data?.data.featured.entries
           .filter((item) => item.bundle !== null)
-          .map((item) => {
-            return (
-              <div className="" key={item.offerId}>
-                <BundlersCards item={item}/>
-              </div>
-            );
-          })}
+          .map((item) => (
+            <div className="" key={item.offerId}>
+              <BundlersCards item={item} />
+            </div>
+          ))}
       </div>
     </section>
   );
